@@ -1,0 +1,22 @@
+services:
+  A:
+    image: registry.nik-soc.hu/kibergyak/kibergyak:latest
+    networks:
+      - mynetwork
+    command: sh -c "ip addr show eth0 | grep 'inet\\b' | awk '{print \$2}' | cut -d/ -f1 && /usr/sbin/sshd -D"
+
+  B:
+    image: registry.nik-soc.hu/kibergyak/kibergyak:latest
+    networks:
+      - mynetwork
+    command: sh -c "ip addr show eth0 | grep 'inet\\b' | awk '{print \$2}' | cut -d/ -f1 && /usr/sbin/sshd -D"
+
+  C:
+    image: registry.nik-soc.hu/kibergyak/kibergyak:latest
+    networks:
+      - mynetwork
+    command: sh -c "ip addr show eth0 | grep 'inet\\b' | awk '{print \$2}' | cut -d/ -f1 && /usr/sbin/sshd -D"
+
+networks:
+  mynetwork:
+    driver: bridge
