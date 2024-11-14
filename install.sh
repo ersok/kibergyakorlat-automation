@@ -54,8 +54,7 @@ if [ -f "$DOCKER_COMPOSE_FILE" ]; then
   sleep 5
   echo "I'm trying :("
   sleep 5
-  docker logs -f &
-  echo "If you cant see the docker IP-s, wait a bit and write: docker logs -f "
+  docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q) | sed 's/^\/\+//'
 else
   echo "No docker-compose.yml file found in the current directory. Please place one next to this script."
 fi
