@@ -47,13 +47,13 @@ fi
 
 if [ -f "$DOCKER_COMPOSE_FILE" ]; then
   sudo docker compose up -d
-  sleep 5
+  sleep 1
   echo "One moment"
-  sleep 5
+  sleep 1
   echo "Almost there..."
-  sleep 5
+  sleep 1
   echo "I'm trying :("
-  sleep 5
+  sleep 1
   docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q) | sed 's/^\/\+//'
 else
   echo "No docker-compose.yml file found in the current directory. Please place one next to this script."
